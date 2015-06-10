@@ -1,4 +1,4 @@
-# uploadcare-cdn
+# uploadcare-cdn [![Build Status](https://travis-ci.org/alanshaw/uploadcare-cdn.svg)](https://travis-ci.org/alanshaw/uploadcare-cdn)
 
 Perform image transformations on uploadcare URLs.
 
@@ -26,3 +26,12 @@ uccdn.resize(url, '200x200')
 * `stretch(<'url'>, <'on','off','fill'>)`
 * `setFill(<'url'>, <'ece3d2'>)`
 * `autoRotate(<'url'>, <'yes','no'>)`
+* `sharp(<'url'>, <0..20>)`
+* `blur(<'url'>, <0..5000>)`
+* `rotate(<'url'>, <90,180,270>)`
+* `flip(<'url'>)`
+* `mirror(<'url'>)`
+* `greyscale(<'url'>)`
+* `invert(<'url'>)`
+
+See https://uploadcare.com/documentation/cdn/ for more info.

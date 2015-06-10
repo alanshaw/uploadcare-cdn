@@ -4,7 +4,7 @@
   "description": "Perform image transformations on uploadcare URLs",
   "main": "index.js",
   "scripts": {
-    "test": "tape test.js"
+    "test": "standard && tape test.js"
   },
   "repository": {
     "type": "git",
@@ -40,6 +40,7 @@
   },
   "homepage": "https://github.com/alanshaw/uploadcare-cdn#readme",
   "devDependencies": {
+    "standard": "^4.0.1",
     "tape": "^4.0.0"
   }
 }
