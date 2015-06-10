@@ -138,13 +138,12 @@ test('validate scale crop dimensions', function (t) {
   t.end()
 })
 
-test('validate scale crop coordinates', function (t) {
-  t.plan(2)
+test('validate scale crop center', function (t) {
+  t.plan(1)
 
   var url = 'http://www.ucarecdn.com/cca76eb6-1d25-4fee-a7a9-9516cc161b73/'
-  t.throws(function () { uccdn.scaleCrop(url, '1x1', 'junk, 55') })
-  url = uccdn.scaleCrop(url, '1x1', '911,999')
-  t.equal(url, 'http://www.ucarecdn.com/cca76eb6-1d25-4fee-a7a9-9516cc161b73/-/scale_crop/1x1/911%2C999/')
+  url = uccdn.scaleCrop(url, '1x1', true)
+  t.equal(url, 'http://www.ucarecdn.com/cca76eb6-1d25-4fee-a7a9-9516cc161b73/-/scale_crop/1x1/center/')
 
   t.end()
 })

@@ -84,22 +84,13 @@ exports.crop = function (url, dims, coords) {
 }
 
 var ScaleCropDimsRegex = /^[0-9]+x[0-9]+$/
-var ScaleCropCoordsRegex = /^([0-9]+,[0-9])|center+$/
 
-exports.scaleCrop = function (url, dims, coords) {
+exports.scaleCrop = function (url, dims, center) {
   if (!ScaleCropDimsRegex.test(dims)) {
     throw new TypeError('Invalid dimensions format, expected format example: 200x200')
   }
 
-  if (coords) {
-    if (!ScaleCropCoordsRegex.test(coords)) {
-      throw new TypeError('Invalid coordinates format, expected format examples: 1400,1800, center')
-    }
-
-    return appendOp(url, '-/scale_crop/' + dims + '/' + encodeURIComponent(coords) + '/')
-  }
-
-  return appendOp(url, '-/scale_crop/' + dims + '/')
+  return appendOp(url, '-/scale_crop/' + dims + '/' + (center ? 'center/' : ''))
 }
 
 var StretchValues = ['on', 'off', 'fill']

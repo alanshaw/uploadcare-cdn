@@ -22,7 +22,7 @@ uccdn.resize(url, '200x200')
 * `preview(<'url'>, <'200x200'>)`
 * `resize(<'url'>, <'200x200','x200','200x'>)`
 * `crop(<'url'>, <'200x200'>, ['1400,1800', 'center'])`
-* `scaleCrop(<'url'>, <'200x200'>, ['1400,1800', 'center'])`
+* `scaleCrop(<'url'>, <'200x200'>, ['center'])`
 * `stretch(<'url'>, <'on','off','fill'>)`
 * `setFill(<'url'>, <'ece3d2'>)`
 * `autoRotate(<'url'>, <'yes','no'>)`
