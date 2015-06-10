@@ -1,0 +1,45 @@
+{
+  "name": "uploadcare-cdn",
+  "version": "0.0.0",
+  "description": "Perform image transformations on uploadcare URLs",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alanshaw/uploadcare-cdn.git"
+  },
+  "keywords": [
+    "uploadcare",
+    "ucare",
+    "cdn",
+    "resize",
+    "format",
+    "quality",
+    "progressive",
+    "preview",
+    "resize",
+    "crop",
+    "scale_crop",
+    "stretch",
+    "setfill",
+    "autorotate",
+    "sharp",
+    "blur",
+    "rotate",
+    "flip",
+    "mirror",
+    "grayscale",
+    "invert"
+  ],
+  "author": "Alan Shaw",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alanshaw/uploadcare-cdn/issues"
+  },
+  "homepage": "https://github.com/alanshaw/uploadcare-cdn#readme",
+  "devDependencies": {
+    "tape": "^4.0.0"
+  }
+}
