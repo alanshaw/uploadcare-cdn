@@ -194,3 +194,7 @@ exports.greyscale = function (url) {
 exports.invert = function (url) {
   return appendOp(url, '-/invert/')
 }
+
+exports.nthImage = function (url, index) {
+  return appendOp(url, 'nth/' + (index || 0))
+}

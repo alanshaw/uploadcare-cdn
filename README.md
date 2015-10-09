@@ -33,5 +33,6 @@ uccdn.resize(url, '200x200')
 * `mirror(<'url'>)`
 * `greyscale(<'url'>)`
 * `invert(<'url'>)`
+* `nthImage(<'groupUrl'>, [<'index'>])`
 
 See https://uploadcare.com/documentation/cdn/ for more info.
