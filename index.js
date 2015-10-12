@@ -201,10 +201,10 @@ exports.nthImage = function (groupUrl, index) {
 
 exports.gallery = function (groupUrl, opts) {
   groupUrl = appendOp(groupUrl, 'gallery/')
-  if (opts) {
-    Object.keys(opts).forEach(function (key) {
-      groupUrl = appendOp(groupUrl, '-/' + key + '/' + opts[key] + '/')
-    })
-  }
+
+  Object.keys(opts || {}).forEach(function (key) {
+    groupUrl = appendOp(groupUrl, '-/' + encodeURIComponent(key) + '/' + encodeURIComponent(opts[key]) + '/')
+  })
+
   return groupUrl
 }
