@@ -34,7 +34,7 @@ uccdn.resize(url, '200x200')
 * `greyscale(<'url'>)`
 * `invert(<'url'>)`
 * `nthImage(<'groupUrl'>, [<'index'>])`
-* `gallery(<'groupUrl'), [<'opts'>])`
+* `gallery(<'groupUrl'>, [<'opts'>])`
 
 ### Gallery
 
