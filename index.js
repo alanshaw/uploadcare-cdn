@@ -196,5 +196,5 @@ exports.invert = function (url) {
 }
 
 exports.nthImage = function (url, index) {
-  return appendOp(url, 'nth/' + (index || 0))
+  return appendOp(url, 'nth/' + (index || 0) + '/')
 }
