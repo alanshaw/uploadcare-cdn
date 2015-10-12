@@ -34,5 +34,11 @@ uccdn.resize(url, '200x200')
 * `greyscale(<'url'>)`
 * `invert(<'url'>)`
 * `nthImage(<'groupUrl'>, [<'index'>])`
+* `gallery(<'groupUrl'), [<'opts'>])`
+
+### Gallery
+
+The gallery method will transform a group URL into a gallery URL, which can be embedded as an iframe.
+For a list of available options, see the [Uploadcare docs](https://uploadcare.com/documentation/cdn/#gallery).
 
 See https://uploadcare.com/documentation/cdn/ for more info.

@@ -195,6 +195,16 @@ exports.invert = function (url) {
   return appendOp(url, '-/invert/')
 }
 
-exports.nthImage = function (url, index) {
-  return appendOp(url, 'nth/' + (index || 0) + '/')
+exports.nthImage = function (groupUrl, index) {
+  return appendOp(groupUrl, 'nth/' + (index || 0) + '/')
+}
+
+exports.gallery = function (groupUrl, opts) {
+  groupUrl = appendOp(groupUrl, 'gallery/')
+  if (opts) {
+    Object.keys(opts).forEach(function (key) {
+      groupUrl = appendOp(groupUrl, '-/' + key + '/' + opts[key] + '/')
+    })
+  }
+  return groupUrl
 }
