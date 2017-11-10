@@ -1,4 +1,19 @@
+function UploadcareUrl (src) {
+  if (!(this instanceof UploadcareUrl)) {
+    return new UploadcareUrl(src)
+  }
+  this._src = src
+}
+
+UploadcareUrl.prototype.toString = function () {
+  return this._src
+}
+
 function appendOp (url, op) {
+  if (!url || url.indexOf('ucarecdn') === -1) {
+    return url
+  }
+
   var parts = url.split('/')
 
   if (url[url.length - 1] === '/') {
@@ -10,9 +25,11 @@ function appendOp (url, op) {
   return parts.join('/')
 }
 
+var StaticApi = { appendOp: appendOp }
+
 var FormatValues = ['png', 'jpeg']
 
-exports.format = function (url, type) {
+StaticApi.format = function (url, type) {
   if (FormatValues.indexOf(type) === -1) {
     throw new TypeError('Format must be one of ' + FormatValues)
   }
@@ -22,7 +39,7 @@ exports.format = function (url, type) {
 
 var QualityValues = ['normal', 'better', 'best', 'lighter', 'lightest']
 
-exports.quality = function (url, value) {
+StaticApi.quality = function (url, value) {
   if (QualityValues.indexOf(value) === -1) {
     throw new TypeError('Quality must be one of ' + QualityValues)
   }
@@ -32,7 +49,7 @@ exports.quality = function (url, value) {
 
 var ProgressiveValues = ['yes', 'no']
 
-exports.progressive = function (url, value) {
+StaticApi.progressive = function (url, value) {
   if (Object.prototype.toString.call(value) === '[object Boolean]') {
     value = value ? 'yes' : 'no'
   }
@@ -46,7 +63,7 @@ exports.progressive = function (url, value) {
 
 var PreviewRegex = /^[0-9]+x[0-9]+$/
 
-exports.preview = function (url, dims) {
+StaticApi.preview = function (url, dims) {
   if (!PreviewRegex.test(dims)) {
     throw new TypeError('Invalid dimensions format, expected format example: 200x200')
   }
@@ -56,7 +73,7 @@ exports.preview = function (url, dims) {
 
 var ResizeRegex = /^([0-9]+x)|([0-9]+x[0-9]+)|(x[0-9]+)$/
 
-exports.resize = function (url, dims) {
+StaticApi.resize = function (url, dims) {
   if (!ResizeRegex.test(dims)) {
     throw new TypeError('Invalid dimensions format, expected format examples: 200x200, x200, 200x')
   }
@@ -67,7 +84,7 @@ exports.resize = function (url, dims) {
 var CropDimsRegex = /^[0-9]+x[0-9]+$/
 var CropCoordsRegex = /^([0-9]+,[0-9])|center+$/
 
-exports.crop = function (url, dims, coords) {
+StaticApi.crop = function (url, dims, coords) {
   if (!CropDimsRegex.test(dims)) {
     throw new TypeError('Invalid dimensions format, expected format example: 200x200')
   }
@@ -85,7 +102,7 @@ exports.crop = function (url, dims, coords) {
 
 var ScaleCropDimsRegex = /^[0-9]+x[0-9]+$/
 
-exports.scaleCrop = function (url, dims, center) {
+StaticApi.scaleCrop = function (url, dims, center) {
   if (!ScaleCropDimsRegex.test(dims)) {
     throw new TypeError('Invalid dimensions format, expected format example: 200x200')
   }
@@ -95,7 +112,7 @@ exports.scaleCrop = function (url, dims, center) {
 
 var StretchValues = ['on', 'off', 'fill']
 
-exports.stretch = function (url, value) {
+StaticApi.stretch = function (url, value) {
   if (StretchValues.indexOf(value) === -1) {
     throw new TypeError('Stretch must be one of ' + StretchValues)
   }
@@ -105,7 +122,7 @@ exports.stretch = function (url, value) {
 
 var SetFillRegex = /^[a-f0-9]{6}$/
 
-exports.setFill = function (url, color) {
+StaticApi.setFill = function (url, color) {
   if (!SetFillRegex.test(color)) {
     throw new TypeError('Color must be in hexadecimal notation')
   }
@@ -115,7 +132,7 @@ exports.setFill = function (url, color) {
 
 var AutoRotateValues = ['yes', 'no']
 
-exports.autoRotate = function (url, value) {
+StaticApi.autoRotate = function (url, value) {
   if (Object.prototype.toString.call(value) === '[object Boolean]') {
     value = value ? 'yes' : 'no'
   }
@@ -131,7 +148,7 @@ function isInt (value) {
   return (Object.prototype.toString.call(value) === '[object Number]' && parseFloat(value) === parseInt(value, 10)) && !isNaN(value)
 }
 
-exports.sharp = function (url, value) {
+StaticApi.sharp = function (url, value) {
   if (value == null) {
     value = 5
   }
@@ -147,7 +164,7 @@ exports.sharp = function (url, value) {
   return appendOp(url, '-/sharp/' + value + '/')
 }
 
-exports.blur = function (url, radius) {
+StaticApi.blur = function (url, radius) {
   if (radius == null) {
     radius = 10
   }
@@ -163,7 +180,7 @@ exports.blur = function (url, radius) {
   return appendOp(url, '-/blur/' + radius + '/')
 }
 
-exports.rotate = function (url, angle) {
+StaticApi.rotate = function (url, angle) {
   if (angle == null) {
     angle = 0
   }
@@ -179,27 +196,27 @@ exports.rotate = function (url, angle) {
   return appendOp(url, '-/rotate/' + angle + '/')
 }
 
-exports.flip = function (url) {
+StaticApi.flip = function (url) {
   return appendOp(url, '-/flip/')
 }
 
-exports.mirror = function (url) {
+StaticApi.mirror = function (url) {
   return appendOp(url, '-/mirror/')
 }
 
-exports.greyscale = function (url) {
+StaticApi.greyscale = function (url) {
   return appendOp(url, '-/greyscale/')
 }
 
-exports.invert = function (url) {
+StaticApi.invert = function (url) {
   return appendOp(url, '-/invert/')
 }
 
-exports.nthImage = function (groupUrl, index) {
+StaticApi.nthImage = function (groupUrl, index) {
   return appendOp(groupUrl, 'nth/' + (index || 0) + '/')
 }
 
-exports.gallery = function (groupUrl, opts) {
+StaticApi.gallery = function (groupUrl, opts) {
   groupUrl = appendOp(groupUrl, 'gallery/')
 
   Object.keys(opts || {}).forEach(function (key) {
@@ -208,3 +225,16 @@ exports.gallery = function (groupUrl, opts) {
 
   return groupUrl
 }
+
+Object.keys(StaticApi).forEach(function (name) {
+  // Add static API methods to UploadcareUrl constructor
+  UploadcareUrl[name] = StaticApi[name]
+
+  // Add instance methods to UploadcareUrl that use the static API
+  UploadcareUrl.prototype[name] = function () {
+    var args = [this._src].concat([].slice.call(arguments))
+    return new UploadcareUrl(UploadcareUrl[name].apply(null, args))
+  }
+})
+
+module.exports = UploadcareUrl

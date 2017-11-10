@@ -7,34 +7,43 @@ Perform image transformations on uploadcare URLs.
 ### Example resize
 
 ```js
-var uccdn = require('uploadcare-cdn')
+var UploadcareUrl = require('uploadcare-cdn')
 var url = 'http://www.ucarecdn.com/cca76eb6-1d25-4fee-a7a9-9516cc161b73/foo.jpg'
 
-uccdn.resize(url, '200x200')
-// http://www.ucarecdn.com/cca76eb6-1d25-4fee-a7a9-9516cc161b73/-/resize/200x200/foo.jpg
+UploadcareUrl(url).resize('200x200').invert().toString()
+
+// http://www.ucarecdn.com/cca76eb6-1d25-4fee-a7a9-9516cc161b73/-/resize/200x200/-/invert/foo.jpg
+
+// You can also call the API as static methods on the constructor e.g.
+// NOTE: Pass the URL as the first param, returns a STRING
+UploadcareUrl.resize(url, '200x200')
 ```
 
 ### API
 
-* `format(<'url'>, <'jpeg','png'>)`
-* `quality(<'url'>, <'normal','better','best','lighter','lightest'>)`
-* `progressive(<'url'>, <'yes','no'>)`
-* `preview(<'url'>, <'200x200'>)`
-* `resize(<'url'>, <'200x200','x200','200x'>)`
-* `crop(<'url'>, <'200x200'>, ['1400,1800', 'center'])`
-* `scaleCrop(<'url'>, <'200x200'>, ['center'])`
-* `stretch(<'url'>, <'on','off','fill'>)`
-* `setFill(<'url'>, <'ece3d2'>)`
-* `autoRotate(<'url'>, <'yes','no'>)`
-* `sharp(<'url'>, <0..20>)`
-* `blur(<'url'>, <0..5000>)`
-* `rotate(<'url'>, <90,180,270>)`
-* `flip(<'url'>)`
-* `mirror(<'url'>)`
-* `greyscale(<'url'>)`
-* `invert(<'url'>)`
-* `nthImage(<'groupUrl'>, [<'index'>])`
-* `gallery(<'groupUrl'>, [<'opts'>])`
+* `format(<'jpeg','png'>)`
+* `quality(<'normal','better','best','lighter','lightest'>)`
+* `progressive(<'yes','no'>)`
+* `preview(<'200x200'>)`
+* `resize(<'200x200','x200','200x'>)`
+* `crop(<'200x200'>, ['1400,1800', 'center'])`
+* `scaleCrop(<'200x200'>, ['center'])`
+* `stretch(<'on','off','fill'>)`
+* `setFill(<'ece3d2'>)`
+* `autoRotate(<'yes','no'>)`
+* `sharp(<0..20>)`
+* `blur(<0..5000>)`
+* `rotate(<90,180,270>)`
+* `flip()`
+* `mirror()`
+* `greyscale()`
+* `invert()`
+* `nthImage([<'index'>])`
+* `gallery([<'opts'>])`
+
+For any newer or unsupported operations you can call:
+
+* `appendOp(<'-/op/args'>)`
 
 ### Gallery
 
