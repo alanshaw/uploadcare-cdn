@@ -19,7 +19,7 @@ UploadcareUrl(url).resize('200x200').invert().toString()
 UploadcareUrl.resize(url, '200x200')
 ```
 
-### API
+## API
 
 * `format(<'jpeg','png'>)`
 * `quality(<'normal','better','best','lighter','lightest'>)`
@@ -51,3 +51,12 @@ The gallery method will transform a group URL into a gallery URL, which can be e
 For a list of available options, see the [Uploadcare docs](https://uploadcare.com/documentation/cdn/#gallery).
 
 See https://uploadcare.com/documentation/cdn/ for more info.
+
+
+## Contribute
+
+Feel free to dive in! [Open an issue](https://github.com/alanshaw/uploadcare-cdn/issues/new) or submit PRs.
+
+## License
+
+[ISC](LICENSE) © Alan Shaw
